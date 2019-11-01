@@ -274,7 +274,7 @@ def run_examples(oauth):
     me = client.user(user_id='me').get(fields=['login'])
     process_code['user'] = 'The email of the user is: {0}'.format(me['login'])
 
-    run(host="localhost", port=8080, debug=True)
+    run(host='0.0.0.0', port=8080)
 
     # run_user_example(client)
     # run_folder_examples(client)

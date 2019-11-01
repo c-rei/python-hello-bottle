@@ -41,7 +41,7 @@ def authenticate(oauth_class=OAuth2):
         auth_code['state'] = bottle.request.query.state
         auth_code_is_available.set()
 
-    local_server = StoppableWSGIServer(host='localhost', port=8080)
+    local_server = StoppableWSGIServer(host='0.0.0.0', port=8080)
     server_thread = Thread(target=lambda: local_oauth_redirect.run(server=local_server))
     server_thread.start()
 
