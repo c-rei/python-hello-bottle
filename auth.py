@@ -41,7 +41,7 @@ def authenticate(oauth_class=OAuth2):
         auth_code['state'] = bottle.request.query.state
         auth_code_is_available.set()
 
-    local_server = StoppableWSGIServer(host='0.0.0.0', port=8080)
+    local_server = StoppableWSGIServer(host='0.0.0.0', port=8089)
     server_thread = Thread(target=lambda: local_oauth_redirect.run(server=local_server))
     server_thread.start()
 
@@ -49,7 +49,7 @@ def authenticate(oauth_class=OAuth2):
         client_id=CLIENT_ID,
         client_secret=CLIENT_SECRET,
     )
-    auth_url, csrf_token = oauth.get_authorization_url('http://localhost:8080')
+    auth_url, csrf_token = oauth.get_authorization_url('https://az4jsc-webapp14.azurewebsites.net')
     webbrowser.open(auth_url)
 
     auth_code_is_available.wait()
